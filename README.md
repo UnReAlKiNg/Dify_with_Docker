@@ -2,10 +2,14 @@
 记录使用Docker Desktop本地化部署dify的各种坑。
 
 ## 工作环境
-我的工位上的设备配置如下：  
-1、Windows 11，i5-12500，24GB RAM  
+我的设备配置如下：  
+1、Windows 11，i5-12500，24GB RAM(后续会同步更新 M1 Macbook Pro 16GB+1T上的配置过程)  
 2、下载并安装 Docker Desktop 4.38.0  
-3、根据官网教程，使用 <git clone https://github.com/langgenius/dify.git> 下载相关内容  
+3、根据官网教程，使用
+‘’‘ bash
+git clone https://github.com/langgenius/dify.git
+’‘’
+下载相关内容  
 
 ## 部署阶段（self-hosted）
 1、进入 <cd dify/docker>  
