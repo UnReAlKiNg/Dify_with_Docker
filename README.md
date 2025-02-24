@@ -15,4 +15,4 @@
 ## 配置阶段
 首先先根据向导设置管理员账号密码并登陆，这一部份不会有什么问题。进来后，在<设置-模型提供商>里添加模型时会碰到一个坑，即模型添加不上去。我遇到的情况如下：在模型提供商里选择ollama，点击安装，在docker-plugin_deamon-1的输出里可以看到在自动下载相关的python library，最后会卡在`[ERROR]init environment failed: failed to install dependencies: signal: killed, ...`，然后就进入无限的”下载->安装->安装失败->重试”循环。这里可以参考官方repo下的解决方案[Github]（[dify-issue-#12635-kurokobo](https://github.com/langgenius/dify/issues/12635)），在.env中添加`PLUGIN_WORKING_PATH=/app/cwd`，然后重新运行`docker compose up -d`，即可正常添加。如果模型需要开放给LAN用户，需要在用户环境变量里添加`变量=OLLAMA_HOST，值=0.0.0.0`，并重启ollama，dify中添加模型时，模型的url需要填写为`http://局域网ip地址:11434`，这样模型就可以顺利添加了。
 
-模型是顺利添加了，但此时又会碰到新的问题。官方教程里会建议你从`探索`里找感兴趣的应用并添加到自己的工作区，
+模型是顺利添加了，但此时又会碰到新的问题。官方教程里会建议你从`探索`里找感兴趣的应用并添加到自己的工作区，这里我添加的是`DeepSearch`。添加的时候，屏幕右上角会提示一长串报错，打开docker-plugin_deamon-1，提示的报错是`/app/internal/db/pgsql.go:259 record not found`
